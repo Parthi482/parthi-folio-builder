@@ -1,37 +1,45 @@
 
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 interface SkillCategory {
   category: string;
   skills: string[];
+  icon: string;
 }
 
 const SkillsSection: React.FC = () => {
   const skillCategories: SkillCategory[] = [
     {
       category: "Frontend",
-      skills: ["Angular 14+", "TypeScript", "SCSS", "HTML", "Responsive Design"]
+      skills: ["Angular 14+", "TypeScript", "SCSS", "HTML", "Responsive Design"],
+      icon: "🖥️"
     },
     {
       category: "Backend",
-      skills: ["Go (Fiber, Gorilla Mux)", ".NET Core", "REST APIs", "WebSockets"]
+      skills: ["Go (Fiber, Gorilla Mux)", ".NET Core", "REST APIs", "WebSockets"],
+      icon: "⚙️"
     },
     {
       category: "Databases",
-      skills: ["MongoDB", "MSSQL", "MySQL", "Database Design"]
+      skills: ["MongoDB", "MSSQL", "MySQL", "Database Design"],
+      icon: "🗄️"
     },
     {
       category: "Cloud/Infra",
-      skills: ["AWS S3", "Cloudflare R2", "Firebase", "Docker", "CI/CD"]
+      skills: ["AWS S3", "Cloudflare R2", "Firebase", "Docker", "CI/CD"],
+      icon: "☁️"
     },
     {
       category: "Tools",
-      skills: ["VS Code", "NGINX", "Git", "JIRA", "Postman"]
+      skills: ["VS Code", "NGINX", "Git", "JIRA", "Postman"],
+      icon: "🛠️"
     },
     {
       category: "Concepts",
-      skills: ["RBAC", "Multi-tenancy", "Real-time Systems", "Payment Integration"]
+      skills: ["RBAC", "Multi-tenancy", "Real-time Systems", "Payment Integration"],
+      icon: "💡"
     }
   ];
 
@@ -48,19 +56,24 @@ const SkillsSection: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
-            <Card key={index} className="overflow-hidden">
-              <div className="bg-primary px-4 py-3">
-                <h3 className="font-semibold text-primary-foreground">{category.category}</h3>
+            <Card 
+              key={index} 
+              className="overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:shadow-lg border-t-4 border-t-primary"
+            >
+              <div className="bg-accent/70 px-4 py-3 flex items-center gap-2">
+                <span className="text-2xl" aria-hidden="true">{category.icon}</span>
+                <h3 className="font-semibold text-foreground">{category.category}</h3>
               </div>
               <CardContent className="p-4">
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill, skillIndex) => (
-                    <span 
+                    <Badge 
                       key={skillIndex} 
-                      className="skill-tag bg-secondary text-foreground text-sm px-3 py-1 rounded-full"
+                      variant="outline" 
+                      className="bg-background/80 hover:bg-primary hover:text-primary-foreground transition-colors duration-300 py-1.5"
                     >
                       {skill}
-                    </span>
+                    </Badge>
                   ))}
                 </div>
               </CardContent>

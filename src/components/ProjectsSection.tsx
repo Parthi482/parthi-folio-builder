@@ -1,8 +1,10 @@
 
-import React from "react";
+import React, { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Link } from "lucide-react";
 
 interface Project {
   title: string;
@@ -14,6 +16,12 @@ interface Project {
 }
 
 const ProjectsSection: React.FC = () => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  
+  const toggleExpand = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
+
   const projects: Project[] = [
     {
       title: "KlausGuru – Class Management Platform",
@@ -58,7 +66,7 @@ const ProjectsSection: React.FC = () => {
   ];
 
   return (
-    <section id="projects" className="py-16 md:py-24 bg-secondary">
+    <section id="projects" className="py-16 md:py-24 bg-secondary/50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
@@ -70,18 +78,25 @@ const ProjectsSection: React.FC = () => {
 
         <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <Card key={index} className="project-card overflow-hidden h-full border border-border shadow-sm hover:shadow-md">
-              <div className="bg-primary p-4">
+            <Card 
+              key={index} 
+              className={`project-card overflow-hidden h-full border border-border shadow-sm hover:shadow-xl transition-all duration-500 
+                ${expandedIndex === index ? 'ring-2 ring-primary scale-[1.02]' : ''}`}
+            >
+              <div className="relative bg-gradient-to-r from-primary/90 to-primary p-4">
                 <h3 className="text-xl font-semibold text-primary-foreground">{project.title}</h3>
+                <span className="absolute top-0 right-0 bg-accent text-accent-foreground rounded-bl-lg text-xs font-medium py-1 px-2">
+                  {project.role}
+                </span>
               </div>
               <CardContent className="p-6 space-y-4">
-                <p>{project.description}</p>
+                <p className="text-foreground/90">{project.description}</p>
                 
                 <div>
                   <div className="font-medium text-sm text-muted-foreground mb-1">Tech Stack:</div>
                   <div className="flex flex-wrap gap-2">
                     {project.stack.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="outline" className="bg-card">
+                      <Badge key={techIndex} variant="outline" className="bg-accent/40">
                         {tech}
                       </Badge>
                     ))}
@@ -89,22 +104,35 @@ const ProjectsSection: React.FC = () => {
                 </div>
                 
                 <div>
-                  <div className="font-medium text-sm text-muted-foreground mb-1">Role:</div>
-                  <p className="text-foreground">{project.role}</p>
-                </div>
-                
-                <div>
                   <div className="font-medium text-sm text-muted-foreground mb-1">Key Features:</div>
-                  <ul className="list-disc pl-5 space-y-1">
-                    {project.features.map((feature, featureIndex) => (
-                      <li key={featureIndex}>{feature}</li>
+                  <ul className="list-none pl-0 space-y-1">
+                    {project.features.slice(0, expandedIndex === index ? project.features.length : 2).map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-start gap-1.5">
+                        <span className="text-primary mt-0.5">•</span>
+                        {feature}
+                      </li>
                     ))}
                   </ul>
+                  {project.features.length > 2 && (
+                    <Button 
+                      variant="ghost" 
+                      className="mt-1 p-0 h-auto text-xs text-primary font-medium flex items-center" 
+                      onClick={() => toggleExpand(index)}
+                    >
+                      {expandedIndex === index ? 'Show less' : 'Show more'} 
+                      <ArrowRight className="h-3 w-3 ml-1" />
+                    </Button>
+                  )}
                 </div>
                 
-                <div className="pt-2 border-t border-border">
-                  <div className="font-medium text-sm text-muted-foreground mb-1">Impact:</div>
-                  <p className="text-primary font-medium">{project.impact}</p>
+                <div className="pt-3 border-t border-border flex items-center justify-between">
+                  <div>
+                    <div className="font-medium text-sm text-muted-foreground">Impact:</div>
+                    <p className="text-primary font-medium">{project.impact}</p>
+                  </div>
+                  <Button variant="outline" size="sm" className="gap-1">
+                    <Link className="h-3.5 w-3.5" /> Details
+                  </Button>
                 </div>
               </CardContent>
             </Card>
@@ -117,18 +145,21 @@ const ProjectsSection: React.FC = () => {
             <CarouselContent>
               {projects.map((project, index) => (
                 <CarouselItem key={index}>
-                  <Card className="project-card overflow-hidden h-full border border-border shadow-sm hover:shadow-md">
-                    <div className="bg-primary p-4">
+                  <Card className="project-card overflow-hidden h-full border border-border shadow-sm">
+                    <div className="relative bg-gradient-to-r from-primary/90 to-primary p-4">
                       <h3 className="text-xl font-semibold text-primary-foreground">{project.title}</h3>
+                      <span className="absolute top-0 right-0 bg-accent text-accent-foreground rounded-bl-lg text-xs font-medium py-1 px-2">
+                        {project.role}
+                      </span>
                     </div>
                     <CardContent className="p-6 space-y-4">
-                      <p>{project.description}</p>
+                      <p className="text-foreground/90">{project.description}</p>
                       
                       <div>
                         <div className="font-medium text-sm text-muted-foreground mb-1">Tech Stack:</div>
                         <div className="flex flex-wrap gap-2">
                           {project.stack.map((tech, techIndex) => (
-                            <Badge key={techIndex} variant="outline" className="bg-card">
+                            <Badge key={techIndex} variant="outline" className="bg-accent/40">
                               {tech}
                             </Badge>
                           ))}
@@ -136,22 +167,35 @@ const ProjectsSection: React.FC = () => {
                       </div>
                       
                       <div>
-                        <div className="font-medium text-sm text-muted-foreground mb-1">Role:</div>
-                        <p className="text-foreground">{project.role}</p>
-                      </div>
-                      
-                      <div>
                         <div className="font-medium text-sm text-muted-foreground mb-1">Key Features:</div>
-                        <ul className="list-disc pl-5 space-y-1">
-                          {project.features.map((feature, featureIndex) => (
-                            <li key={featureIndex}>{feature}</li>
+                        <ul className="list-none pl-0 space-y-1">
+                          {project.features.slice(0, expandedIndex === index ? project.features.length : 2).map((feature, featureIndex) => (
+                            <li key={featureIndex} className="flex items-start gap-1.5">
+                              <span className="text-primary mt-0.5">•</span>
+                              {feature}
+                            </li>
                           ))}
                         </ul>
+                        {project.features.length > 2 && (
+                          <Button 
+                            variant="ghost" 
+                            className="mt-1 p-0 h-auto text-xs text-primary font-medium flex items-center" 
+                            onClick={() => toggleExpand(index)}
+                          >
+                            {expandedIndex === index ? 'Show less' : 'Show more'} 
+                            <ArrowRight className="h-3 w-3 ml-1" />
+                          </Button>
+                        )}
                       </div>
                       
-                      <div className="pt-2 border-t border-border">
-                        <div className="font-medium text-sm text-muted-foreground mb-1">Impact:</div>
-                        <p className="text-primary font-medium">{project.impact}</p>
+                      <div className="pt-3 border-t border-border flex items-center justify-between">
+                        <div>
+                          <div className="font-medium text-sm text-muted-foreground">Impact:</div>
+                          <p className="text-primary font-medium">{project.impact}</p>
+                        </div>
+                        <Button variant="outline" size="sm" className="gap-1">
+                          <Link className="h-3.5 w-3.5" /> Details
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>
