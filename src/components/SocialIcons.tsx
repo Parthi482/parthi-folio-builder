@@ -11,7 +11,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({ className = "", iconSize = 20
   return (
     <div className={`flex items-center space-x-4 ${className}`}>
       <a
-        href="https://github.com/parthiban"
+        href="https://github.com/Parthi482"
         target="_blank"
         rel="noopener noreferrer"
         className="text-foreground hover:text-primary transition-colors"
@@ -20,7 +20,7 @@ const SocialIcons: React.FC<SocialIconsProps> = ({ className = "", iconSize = 20
         <Github size={iconSize} />
       </a>
       <a
-        href="https://linkedin.com/in/parthiban"
+        href="https://linkedin.com/in/parthi482"
         target="_blank"
         rel="noopener noreferrer"
         className="text-foreground hover:text-primary transition-colors"

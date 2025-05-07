@@ -12,7 +12,7 @@ const AboutSection: React.FC = () => {
 
         <div className="max-w-4xl mx-auto">
           <p className="text-xl leading-relaxed">
-            I'm a results-driven software engineer with 3+ years of experience building scalable web apps using Angular and Go. 
+            I'm a results-driven software engineer with 2.5+ years of experience building scalable web apps using Angular and Go. 
             I've led the backend for multi-tenant platforms, real-time dashboards, and class/payment systems. 
             {/* <span className="font-medium text-primary"> I build systems that don't break — even under pressure.</span> */}
           </p>
