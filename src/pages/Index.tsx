@@ -11,9 +11,9 @@ import Footer from "@/components/Footer";
 
 const Index: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-background">
       <Navbar />
-      <main>
+      <main className="flex-1">
         <HeroSection />
         <AboutSection />
         <SkillsSection />

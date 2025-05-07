@@ -38,6 +38,22 @@ const ProjectsSection: React.FC = () => {
       role: "Real-time backend developer",
       features: ["Instant alerts", "Media reporting", "WebSocket communication", "Real-time location tracking"],
       impact: "Reduced emergency response times by 40%"
+    },
+    {
+      title: "CloudSync – File Management System",
+      description: "Secure cloud-based file synchronization and management solution for enterprises.",
+      stack: ["Angular", "Go", "Cloudflare R2", "MSSQL"],
+      role: "Lead Developer",
+      features: ["End-to-end encryption", "Version control", "Team collaboration", "Custom permission system"],
+      impact: "Handled 2TB+ of sensitive data with zero breaches"
+    },
+    {
+      title: "PayTrack – Financial Management App",
+      description: "Personal finance tracking application with budgeting and investment insights.",
+      stack: ["Angular", "Firebase", "Node.js", "ChartJS"],
+      role: "Frontend Engineer",
+      features: ["Budget forecasting", "Investment tracking", "Expense categorization", "Financial reports"],
+      impact: "Helped users save average of 15% on monthly expenses"
     }
   ];
 
