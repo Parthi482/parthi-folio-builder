@@ -14,7 +14,7 @@ const AboutSection: React.FC = () => {
           <p className="text-xl leading-relaxed">
             I'm a results-driven software engineer with 3+ years of experience building scalable web apps using Angular and Go. 
             I've led the backend for multi-tenant platforms, real-time dashboards, and class/payment systems. 
-            <span className="font-medium text-primary"> I build systems that don't break — even under pressure.</span>
+            {/* <span className="font-medium text-primary"> I build systems that don't break — even under pressure.</span> */}
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">

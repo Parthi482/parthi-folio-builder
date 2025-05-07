@@ -37,7 +37,7 @@ const Navbar: React.FC = () => {
     >
       <div className="container mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
         <a href="#top" className="text-xl md:text-2xl font-bold font-heading text-primary">
-          Parthiban<span className="text-foreground">.dev</span>
+          Parthiban
         </a>
 
         {/* Desktop Navigation */}
