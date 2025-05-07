@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 interface Project {
   title: string;
@@ -51,7 +52,7 @@ const ProjectsSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <Card key={index} className="project-card overflow-hidden h-full border border-border shadow-sm hover:shadow-md">
               <div className="bg-primary p-4">
@@ -92,6 +93,60 @@ const ProjectsSection: React.FC = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Mobile carousel view */}
+        <div className="md:hidden">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {projects.map((project, index) => (
+                <CarouselItem key={index}>
+                  <Card className="project-card overflow-hidden h-full border border-border shadow-sm hover:shadow-md">
+                    <div className="bg-primary p-4">
+                      <h3 className="text-xl font-semibold text-primary-foreground">{project.title}</h3>
+                    </div>
+                    <CardContent className="p-6 space-y-4">
+                      <p>{project.description}</p>
+                      
+                      <div>
+                        <div className="font-medium text-sm text-muted-foreground mb-1">Tech Stack:</div>
+                        <div className="flex flex-wrap gap-2">
+                          {project.stack.map((tech, techIndex) => (
+                            <Badge key={techIndex} variant="outline" className="bg-card">
+                              {tech}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      <div>
+                        <div className="font-medium text-sm text-muted-foreground mb-1">Role:</div>
+                        <p className="text-foreground">{project.role}</p>
+                      </div>
+                      
+                      <div>
+                        <div className="font-medium text-sm text-muted-foreground mb-1">Key Features:</div>
+                        <ul className="list-disc pl-5 space-y-1">
+                          {project.features.map((feature, featureIndex) => (
+                            <li key={featureIndex}>{feature}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      
+                      <div className="pt-2 border-t border-border">
+                        <div className="font-medium text-sm text-muted-foreground mb-1">Impact:</div>
+                        <p className="text-primary font-medium">{project.impact}</p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="mt-4 flex justify-center gap-2">
+              <CarouselPrevious className="static transform-none" />
+              <CarouselNext className="static transform-none" />
+            </div>
+          </Carousel>
         </div>
       </div>
     </section>
