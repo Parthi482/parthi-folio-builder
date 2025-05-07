@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card } from "@/components/ui/card";
 import SocialIcons from "./SocialIcons";
-import { Download, Mail, Phone } from "lucide-react";
+import { Download, Mail, MapPin, Phone } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const ContactSection: React.FC = () => {
@@ -47,7 +47,7 @@ const ContactSection: React.FC = () => {
             Have a project in mind or want to discuss opportunities? Drop me a message!
           </p>
         </div>
-
+{/* 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <div>
             <Card className="p-6 h-full bg-background shadow-sm border border-border">
@@ -125,14 +125,7 @@ const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* <div className="pt-4">
-                  <Button asChild variant="outline" className="w-full">
-                    <a href="#" download="parthiban_resume.pdf">
-                      <Download className="mr-2 h-4 w-4" /> Download Resume
-                    </a>
-                  </Button>
-                </div> */}
-
+           
                 <div className="pt-4">
                   <Button asChild variant="outline" className="w-full">
                     <a href="/assets/parthiban_resume.pdf" download="parthiban_resume.pdf">
@@ -147,7 +140,11 @@ const ContactSection: React.FC = () => {
             </Card>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+        </div> */}
+
+
+<div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
             <div>
               <Card className="p-6 h-full bg-background shadow-sm border border-border">
                 <h3 className="text-xl font-semibold mb-6">Contact Information</h3>
@@ -167,7 +164,7 @@ const ContactSection: React.FC = () => {
 
                   <div className="flex items-start">
                     <div className="mr-4 mt-1">
-                      <Phone className="h-5 w-5 text-primary" />
+                      <MapPin className="h-5 w-5 text-primary" />
                     </div>
                     <div>
                       <p className="font-medium">Location</p>
@@ -300,7 +297,7 @@ const ContactSection: React.FC = () => {
             </div>
           </div>
 
-        </div>
+
 
       </div>
     </section>
